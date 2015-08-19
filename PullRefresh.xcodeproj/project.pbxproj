@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EA43EDF1B847EFC00E462B5 /* MsgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA43EDE1B847EFC00E462B5 /* MsgCell.swift */; };
 		C07F5C771B22CF12001A33E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07F5C761B22CF12001A33E7 /* AppDelegate.swift */; };
 		C07F5C791B22CF12001A33E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07F5C781B22CF12001A33E7 /* ViewController.swift */; };
 		C07F5C7C1B22CF12001A33E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C07F5C7A1B22CF12001A33E7 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0EA43EDE1B847EFC00E462B5 /* MsgCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MsgCell.swift; sourceTree = "<group>"; };
 		C07F5C711B22CF12001A33E7 /* PullRefresh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PullRefresh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C07F5C751B22CF12001A33E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C07F5C761B22CF12001A33E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			children = (
 				C07F5C761B22CF12001A33E7 /* AppDelegate.swift */,
 				C07F5C781B22CF12001A33E7 /* ViewController.swift */,
+				0EA43EDE1B847EFC00E462B5 /* MsgCell.swift */,
 				C07F5C7A1B22CF12001A33E7 /* Main.storyboard */,
 				C07F5C961B22D05A001A33E7 /* RefreshContents.xib */,
 				C07F5C7D1B22CF12001A33E7 /* Images.xcassets */,
@@ -216,6 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EA43EDF1B847EFC00E462B5 /* MsgCell.swift in Sources */,
 				C07F5C791B22CF12001A33E7 /* ViewController.swift in Sources */,
 				C07F5C771B22CF12001A33E7 /* AppDelegate.swift in Sources */,
 			);
@@ -345,6 +349,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PullRefresh/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -355,6 +360,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PullRefresh/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -413,6 +419,7 @@
 				C07F5C921B22CF12001A33E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C07F5C931B22CF12001A33E7 /* Build configuration list for PBXNativeTarget "PullRefreshTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +428,7 @@
 				C07F5C951B22CF12001A33E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

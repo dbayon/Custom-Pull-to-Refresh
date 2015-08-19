@@ -18,7 +18,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var customView: UIView!
     
-    var labelsArray: Array<UILabel> = []
+    //var labelsArray: Array<UILabel> = []
     
     var isAnimating = false
     
@@ -28,10 +28,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var timer: NSTimer!
     
+    var msgString: NSString!
+    
+    @IBOutlet weak var loadMsg: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        msgString = "People Suggestions"
         
         tblDemo.delegate = self
         tblDemo.dataSource = self
@@ -66,6 +71,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.textLabel!.text = dataArray[indexPath.row]
         
         return cell
+
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -76,9 +82,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // MARK: UIScrollView delegate method implementation
     
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if !refreshControl.refreshing {
+            if scrollView.contentOffset.y > -45 && scrollView.contentOffset.y < -10{
+                self.loadMsg.text = "Pull to refresh"
+            } else if scrollView.contentOffset.y < -50 && scrollView.contentOffset.y > -100 {
+                self.loadMsg.text = "Release to reload"
+            } else if scrollView.contentOffset.y >= 0 {
+                self.loadMsg.text = "People suggestions"
+            }
+        }
+    }
+    
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        
         if refreshControl.refreshing {
             if !isAnimating {
+                self.loadMsg.text = "Searching people suggestions"
                 doSomething()
                 animateRefreshStep1()
             }
@@ -93,10 +113,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         customView = refreshContents[0] as! UIView
         customView.frame = refreshControl.bounds
-        
-        for var i=0; i<customView.subviews.count; ++i {
-            labelsArray.append(customView.viewWithTag(i + 1) as! UILabel)
-        }
+
         
         refreshControl.addSubview(customView)
     }
@@ -106,19 +123,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         isAnimating = true
         
         UIView.animateWithDuration(0.1, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
-            self.labelsArray[self.currentLabelIndex].transform = CGAffineTransformMakeRotation(CGFloat(M_PI_4))
-            self.labelsArray[self.currentLabelIndex].textColor = self.getNextColor()
+           
             
             }, completion: { (finished) -> Void in
                 
                 UIView.animateWithDuration(0.05, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
-                    self.labelsArray[self.currentLabelIndex].transform = CGAffineTransformIdentity
-                    self.labelsArray[self.currentLabelIndex].textColor = UIColor.blackColor()
                     
                     }, completion: { (finished) -> Void in
                         ++self.currentLabelIndex
                         
-                        if self.currentLabelIndex < self.labelsArray.count {
+                        if self.currentLabelIndex < 5 {
                             self.animateRefreshStep1()
                         }
                         else {
@@ -131,23 +145,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func animateRefreshStep2() {
         UIView.animateWithDuration(0.35, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
-            self.labelsArray[0].transform = CGAffineTransformMakeScale(1.5, 1.5)
-            self.labelsArray[1].transform = CGAffineTransformMakeScale(1.5, 1.5)
-            self.labelsArray[2].transform = CGAffineTransformMakeScale(1.5, 1.5)
-            self.labelsArray[3].transform = CGAffineTransformMakeScale(1.5, 1.5)
-            self.labelsArray[4].transform = CGAffineTransformMakeScale(1.5, 1.5)
-            self.labelsArray[5].transform = CGAffineTransformMakeScale(1.5, 1.5)
-            self.labelsArray[6].transform = CGAffineTransformMakeScale(1.5, 1.5)
             
             }, completion: { (finished) -> Void in
                 UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
-                    self.labelsArray[0].transform = CGAffineTransformIdentity
-                    self.labelsArray[1].transform = CGAffineTransformIdentity
-                    self.labelsArray[2].transform = CGAffineTransformIdentity
-                    self.labelsArray[3].transform = CGAffineTransformIdentity
-                    self.labelsArray[4].transform = CGAffineTransformIdentity
-                    self.labelsArray[5].transform = CGAffineTransformIdentity
-                    self.labelsArray[6].transform = CGAffineTransformIdentity
                     
                     }, completion: { (finished) -> Void in
                         if self.refreshControl.refreshing {
@@ -156,10 +156,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         }
                         else {
                             self.isAnimating = false
-                            self.currentLabelIndex = 0
-                            for var i=0; i<self.labelsArray.count; ++i {
-                                self.labelsArray[i].textColor = UIColor.blackColor()
-                                self.labelsArray[i].transform = CGAffineTransformIdentity
+                            self.loadMsg.text = "People suggestions"
+                            for var i=0; i<5; ++i {
                             }
                         }
                 })
