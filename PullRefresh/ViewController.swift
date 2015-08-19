@@ -42,8 +42,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tblDemo.dataSource = self
         
         refreshControl = UIRefreshControl()
-        refreshControl.backgroundColor = UIColor.clearColor()
-        refreshControl.tintColor = UIColor.clearColor()
+        refreshControl.backgroundColor = UIColor.blueColor()
+        refreshControl.tintColor = UIColor.whiteColor()
         tblDemo.addSubview(refreshControl)
         
         loadCustomRefreshContents()
@@ -115,7 +115,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         customView.frame = refreshControl.bounds
 
         
-        refreshControl.addSubview(customView)
+        //refreshControl.addSubview(customView)
     }
     
     
